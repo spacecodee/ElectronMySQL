@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, tray } = require("electron");
 const path = require("path");
 require("electron-reload")(__dirname, "../src");
 const ipc = ipcMain;
@@ -10,10 +10,11 @@ function createWindow() {
     width: 1500,
     height: 900,
     frame: false,
+    icon: "src/assets/img/logo.ico",
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      devTools: true,
+      devTools: false,
       preload: path.join(__dirname, "preload.js"),
     },
   });
@@ -36,7 +37,7 @@ function createWindow() {
   });
 
   win.setMenu(null);
-  win.webContents.toggleDevTools(); // Abre el devtools por defecto
+  //win.webContents.toggleDevTools(); // Abre el devtools por defecto
 }
 
 app.whenReady().then(() => {
