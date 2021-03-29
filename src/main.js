@@ -7,7 +7,7 @@ const { getConnection } = require("../src/static/config/database");
 let win;
 function createWindow() {
   win = new BrowserWindow({
-    width: 1200,
+    width: 1500,
     height: 900,
     frame: false,
     webPreferences: {
@@ -55,23 +55,109 @@ app.on("window-all-closed", () => {
   }
 });
 
-//sql
-ipcMain.handle("get", () => {
+/*sql*/
+ipc.handle("get", () => {
   getProducts();
 });
 
 function getProducts() {
   const conn = getConnection();
-  const sql = "SELECT * FROM product";
-  conn.query(sql, (error, products, fields) => {
-    if (error) {
-      console.log(error);
-    }
+  const sql = "SELECT * FROM product ORDER BY id DESC";
 
-    console.log("******");
-    console.log(products);
-    console.log("------------");
+  try {
+    //conn.connect();
+    conn.query(sql, (error, products) => {
+      if (error) {
+        console.log(`Hubo un error: ${error}`);
+      }
 
-    win.webContents.send("products", products);
-  });
+      win.webContents.send("products", products);
+    });
+  } catch (error) {
+    console.log("Error de");
+    console.log(err);
+  } finally {
+    //conn.end(); -> debes cerrarlo por todo
+  }
+}
+
+//add
+ipc.handle("add", (e, product) => {
+  addProduct(product);
+});
+
+function addProduct(product) {
+  const conn = getConnection();
+  const sql = "INSERT INTO product (name, description, price) VALUES (?, ?, ?)";
+
+  try {
+    //conn.connect();
+    const { id, name, price, description } = product;
+    conn.query(sql, [name, price, description], (error) => {
+      if (error) {
+        console.log(`Hubo un error: ${error}`);
+      }
+
+      getProducts();
+    });
+  } catch (error) {
+    console.log("Error de");
+    console.log(err);
+  } finally {
+    //conn.end(); -> debes cerrarlo por todo
+  }
+}
+
+//edit
+ipc.handle("edit", (e, product) => {
+  editProduct(product);
+});
+
+function editProduct(product) {
+  const conn = getConnection();
+  const sql =
+    "UPDATE product SET name = ?, description = ?, price = ? WHERE id = ?";
+  try {
+    //conn.connect();
+    const { id, name, price, description } = product;
+    conn.query(sql, [name, description, price, id], (error) => {
+      if (error) {
+        console.log(`Hubo un error: ${error}`);
+      }
+
+      getProducts();
+    });
+  } catch (error) {
+    console.log("Error de");
+    console.log(err);
+  } finally {
+    //conn.end(); -> debes cerrarlo por todo
+  }
+}
+
+//delete
+ipc.handle("delete", (e, product) => {
+  deleteProduct(product);
+});
+
+function deleteProduct(product) {
+  const conn = getConnection();
+  const sql = "DELETE FROM product WHERE id = ?";
+
+  try {
+    //conn.connect();
+    const { id, name, price, description } = product;
+    conn.query(sql, id, (error) => {
+      if (error) {
+        console.log(`Hubo un error: ${error}`);
+      }
+
+      getProducts();
+    });
+  } catch (error) {
+    console.log("Error de");
+    console.log(err);
+  } finally {
+    //conn.end(); -> debes cerrarlo por todo
+  }
 }
