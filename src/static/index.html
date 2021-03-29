@@ -2,17 +2,108 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       http-equiv="Content-Security-Policy"
       content="script-src 'self' 'unsafe-inline';"
     />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/css/normalize.css" />
+    <link rel="stylesheet" href="../assets//css/styles.css" />
     <title>MySQL && Electron</title>
   </head>
   <body>
-    <h1>Hola XD</h1>
+    <header>
+      <div class="titlebar">
+        <div class="buttons">
+          <div class="close">
+            <a class="closebutton" href="#"
+              ><span><strong>x</strong></span></a
+            >
+            <!-- close button link -->
+          </div>
+          <div class="zoom">
+            <a class="zoombutton" href="#"
+              ><span><strong>+</strong></span></a
+            >
+            <!-- zoom button link -->
+          </div>
+
+          <div class="minimize">
+            <a class="minimizebutton" href="#"
+              ><span><strong>&ndash;</strong></span></a
+            >
+            <!-- minimize button link -->
+          </div>
+        </div>
+        CSS OS X || MySQL and Electron JS
+        <!-- window title -->
+      </div>
+    </header>
+    <main class="window">
+      <div class="content">
+        <div class="wrapper">
+          <div class="title">Add Products</div>
+          <form class="form" id="productForm">
+            <div class="inputfield">
+              <label>Product Name</label>
+              <input type="text" class="input" placeholder="Name" />
+            </div>
+            <div class="inputfield">
+              <label>Price</label>
+              <input
+                type="number"
+                class="input"
+                placeholder="Price"
+                step="any"
+              />
+            </div>
+            <div class="inputfield">
+              <label>Descriptión</label>
+              <input type="text" class="input" placeholder="Description" />
+            </div>
+            <div class="inputfield">
+              <button type="submit" class="btn" id="btnAdd">Add Product</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="table-container">
+          <h2 class="table-heading">Products</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Product Description</th>
+              </tr>
+            </thead>
+
+            <tbody id="listProduct">
+              <tr>
+                <td data-heading="Programming Language">C++</td>
+                <td data-heading="Designed by">Bjarne Stroustrup</td>
+                <td data-heading="Difficulty">Advanced</td>
+              </tr>
+
+              <tr>
+                <td data-heading="Programming Language">Python</td>
+                <td data-heading="Designed by">Guido van Rossum</td>
+                <td data-heading="Difficulty">Beginner</td>
+              </tr>
+
+              <tr>
+                <td data-heading="Programming Language">Java</td>
+                <td data-heading="Designed by">James Gosling</td>
+                <td data-heading="Difficulty">Intermediate</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
     <script src="js/app.js"></script>
   </body>
 </html>

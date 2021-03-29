@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   database: "dbproduct",
   charset: "utf8",
   port: 3306,
-  timezone: "utc",
+  timezone: "local",
   ssl: false,
 });
 
