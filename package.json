@@ -1,0 +1,26 @@
+{
+  "name": "electronmysql",
+  "version": "1.0.0",
+  "description": "Electron y MySQL App ",
+  "main": "./src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "Electron",
+    "JS",
+    "JS",
+    "HTML",
+    "CSS",
+    "MySQL"
+  ],
+  "author": "Space Codee",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^12.0.2"
+  },
+  "dependencies": {
+    "electron-reload": "^1.5.0",
+    "mysql": "^2.18.1"
+  }
+}
