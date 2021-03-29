@@ -65,7 +65,6 @@ function getProducts() {
   const sql = "SELECT * FROM product ORDER BY id DESC";
 
   try {
-    //conn.connect();
     conn.query(sql, (error, products) => {
       if (error) {
         console.log(`Hubo un error: ${error}`);
@@ -76,8 +75,6 @@ function getProducts() {
   } catch (error) {
     console.log("Error de");
     console.log(err);
-  } finally {
-    //conn.end(); -> debes cerrarlo por todo
   }
 }
 
@@ -91,7 +88,6 @@ function addProduct(product) {
   const sql = "INSERT INTO product (name, description, price) VALUES (?, ?, ?)";
 
   try {
-    //conn.connect();
     const { id, name, price, description } = product;
     conn.query(sql, [name, price, description], (error) => {
       if (error) {
@@ -103,8 +99,6 @@ function addProduct(product) {
   } catch (error) {
     console.log("Error de");
     console.log(err);
-  } finally {
-    //conn.end(); -> debes cerrarlo por todo
   }
 }
 
@@ -118,7 +112,6 @@ function editProduct(product) {
   const sql =
     "UPDATE product SET name = ?, description = ?, price = ? WHERE id = ?";
   try {
-    //conn.connect();
     const { id, name, price, description } = product;
     conn.query(sql, [name, description, price, id], (error) => {
       if (error) {
@@ -130,8 +123,6 @@ function editProduct(product) {
   } catch (error) {
     console.log("Error de");
     console.log(err);
-  } finally {
-    //conn.end(); -> debes cerrarlo por todo
   }
 }
 
@@ -145,7 +136,6 @@ function deleteProduct(product) {
   const sql = "DELETE FROM product WHERE id = ?";
 
   try {
-    //conn.connect();
     const { id, name, price, description } = product;
     conn.query(sql, id, (error) => {
       if (error) {
@@ -157,7 +147,5 @@ function deleteProduct(product) {
   } catch (error) {
     console.log("Error de");
     console.log(err);
-  } finally {
-    //conn.end(); -> debes cerrarlo por todo
   }
 }
