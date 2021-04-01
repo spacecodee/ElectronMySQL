@@ -4,7 +4,9 @@
   "description": "Electron y MySQL App ",
   "main": "./src/main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "electron-builder -w"
   },
   "keywords": [
     "Electron",
@@ -17,7 +19,8 @@
   "author": "Space Codee",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^12.0.2"
+    "electron": "^12.0.2",
+    "electron-builder": "^22.10.5"
   },
   "dependencies": {
     "electron-reload": "^1.5.0",
